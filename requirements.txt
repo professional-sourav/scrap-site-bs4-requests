@@ -1,1 +1,3 @@
+pip install --upgrade pip
+
 sudo apt install gunicorn

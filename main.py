@@ -68,7 +68,7 @@ def headless():
 
     driver = webdriver.Chrome(options=chrome_options)
 
-    # url = request.form.get('url')
+    url = request.form.get('url')
 
     CUSTOM_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36'
     SEC_CH_UA = '"Google Chrome";v="112", " Not;A Brand";v="99", "Chromium";v="112"'
@@ -76,13 +76,13 @@ def headless():
 
     # print(url)
 
-    driver.get('https://www.ionos.com/')
+    driver.get(url)
 
     response = ''
 
-    for request in driver.requests:
-        if request.url == "https://www.ionos.com/":
-            response = request.response
+    for http_request in driver.requests:
+        if http_request.url == url:
+            response = http_request.response
 
     soup = BeautifulSoup(driver.page_source, 'html.parser')
 

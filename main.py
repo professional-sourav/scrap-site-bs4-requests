@@ -1,13 +1,12 @@
 from flask import Flask
 from flask import request
-from flask import Response
-from flask import jsonify
 import requests
 from bs4 import BeautifulSoup
 import json
-import logging
-import sys
+
 from seleniumwire import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
 from chromedriver_py import binary_path
 
 # import seleniumwire.undetected_chromedriver as uc
@@ -51,6 +50,8 @@ def headless():
     # other chrome options
     chrome_options = webdriver.ChromeOptions()
     # chrome_options.headless = True
+    print(binary_path)
+    chrome_options.binary_location = binary_path
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--ignore-certificate-errors-spki-list')
@@ -67,7 +68,9 @@ def headless():
     chrome_options.experimental_options["prefs"] = chrome_prefs
     ###
 
-    driver = webdriver.Chrome(executable_path=binary_path, options=chrome_options)
+    service = ChromeService(executable_path=ChromeDriverManager().install())
+
+    driver = webdriver.Chrome(options=chrome_options, service=service)
 
     url = request.form.get('url')
 

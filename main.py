@@ -8,6 +8,7 @@ import json
 import logging
 import sys
 from seleniumwire import webdriver
+from chromedriver_py import binary_path
 
 # import seleniumwire.undetected_chromedriver as uc
 
@@ -66,7 +67,7 @@ def headless():
     chrome_options.experimental_options["prefs"] = chrome_prefs
     ###
 
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(executable_path=binary_path, options=chrome_options)
 
     url = request.form.get('url')
 

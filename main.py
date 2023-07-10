@@ -88,7 +88,7 @@ def headless():
 
     driver.quit()
 
-    # print(response[0].headers.as_bytes())
+    print(dict(response.headers))
 
     # return dict(response.headers)
 

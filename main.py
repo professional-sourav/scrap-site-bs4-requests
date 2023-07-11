@@ -81,14 +81,13 @@ def headless():
     response = ''
 
     for http_request in driver.requests:
-        if http_request.url == url:
+        if http_request.url.strip('/') == url.strip('/'):
+            print(http_request.url, url)
             response = http_request.response
 
     soup = BeautifulSoup(driver.page_source, 'html.parser')
 
     driver.quit()
-
-    print(dict(response.headers))
 
     # return dict(response.headers)
 

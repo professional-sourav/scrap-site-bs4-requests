@@ -22,6 +22,6 @@ jobs:
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: My-Test-Environment
         environment_name: My-Test-Environment-env
-        version_label: 14
+        version_label: 15
         region: us-east-2
         deployment_package: deploy.zip

@@ -24,4 +24,4 @@ jobs:
         environment_name: My-Test-Environment-env
         version_label: 11
         region: us-east-2
-        deployment_package: deploy1.zip
+        deployment_package: deploy.zip

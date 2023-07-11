@@ -6,3 +6,4 @@ chromedriver-py
 selenium
 selenium-wire
 webdriver-manager
+undetected_chromedriver

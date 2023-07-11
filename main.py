@@ -10,7 +10,7 @@ import sys
 from seleniumwire import webdriver
 from seleniumwire.utils import decode
 
-# import seleniumwire.undetected_chromedriver as uc
+import seleniumwire.undetected_chromedriver as uc
 
 app = Flask(__name__)
 
@@ -49,7 +49,7 @@ def scrap():
 @app.route('/headless', methods=['GET', 'POST'])
 def headless():
     # other chrome options
-    chrome_options = webdriver.ChromeOptions()
+    chrome_options = uc.ChromeOptions()
     chrome_options.headless = True
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
@@ -58,13 +58,13 @@ def headless():
     chrome_options.add_argument("--window-size=1920,1200")
 
     ### This blocks images and javascript requests
-    chrome_prefs = {
-        "profile.default_content_setting_values": {
-            "images": 2,
-            "javascript": 2,
-        }
-    }
-    chrome_options.experimental_options["prefs"] = chrome_prefs
+    # chrome_prefs = {
+    #     "profile.default_content_setting_values": {
+    #         "images": 2,
+    #         "javascript": 2,
+    #     }
+    # }
+    # chrome_options.experimental_options["prefs"] = chrome_prefs
     ###
 
     driver = webdriver.Chrome(options=chrome_options)
@@ -103,8 +103,6 @@ def headless():
     body = decode(response.body, response.headers.get('Content-Encoding', 'identity'))
 
     driver.quit()
-
-    # return dict(response.headers)
 
     return {
         "content": body.decode(),

@@ -93,5 +93,6 @@ def headless():
 
     return {
         "content": soup.html.decode(),
-        "headers": dict(response.headers)
+        "headers": dict(response.headers),
+        "status": response.status_code
     }
